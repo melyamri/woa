@@ -1,0 +1,14 @@
+appdirs==1.4.3
+backports-abc==0.5
+certifi==2017.1.23
+Mesa==0.8.0
+numpy==1.12.1
+packaging==16.8
+pandas==0.19.2
+pyparsing==2.2.0
+python-dateutil==2.6.0
+pytz==2016.10
+singledispatch==3.4.0.3
+six==1.10.0
+tornado==4.4.2
+tqdm==4.11.2
