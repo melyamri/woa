@@ -1,12 +1,12 @@
 # WORLD OF AGENTS
 
-##Setup (opcional)
+## Setup (opcional)
 
 ```
 virtualenv venv
 ```
 
-##Run
+## Run
 
 ```
 source venv/bin/activate #sólo con virtualenv
