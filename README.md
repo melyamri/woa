@@ -3,7 +3,7 @@
 ## Setup (opcional)
 
 ```
-virtualenv venv
+virtualenv -p python3 venv
 ```
 
 ## Run
