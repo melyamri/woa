@@ -1,8 +1,8 @@
 from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
 
-from wolf_sheep.agents import Wolf, Sheep, GrassPatch
-from wolf_sheep.model import WolfSheepPredation
+from world_of_agents.agents import Wolf, Sheep, GrassPatch
+from world_of_agents.model import WolfSheepPredation
 
 
 def wolf_sheep_portrayal(agent):

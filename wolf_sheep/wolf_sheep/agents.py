@@ -2,7 +2,7 @@ import random
 
 from mesa import Agent
 
-from wolf_sheep.random_walk import RandomWalker
+from world_of_agents.random_walk import RandomWalker
 
 
 class Sheep(RandomWalker):

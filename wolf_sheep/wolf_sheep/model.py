@@ -15,8 +15,8 @@ from mesa import Model
 from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 
-from wolf_sheep.agents import Sheep, Wolf, GrassPatch
-from wolf_sheep.schedule import RandomActivationByBreed
+from world_of_agents.agents import Sheep, Wolf, GrassPatch
+from world_of_agents.schedule import RandomActivationByBreed
 
 
 class WolfSheepPredation(Model):
