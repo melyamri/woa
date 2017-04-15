@@ -1,3 +1,3 @@
-from world_of_agents_core.server.server_controller import server
+from server.server_controller import server
 
 server.launch()

@@ -2,11 +2,11 @@ import random
 
 from mesa import Agent
 
-from world_of_agents_core.agents.custom_agent import CustomAgent
-from world_of_agents_core.agents.wood import WoodResource
+from agents.human_agent import HumanAgent
+from agents.wood import WoodResource
 
 
-class Collector(CustomAgent):
+class Collector(HumanAgent):
     '''
     A sheep that walks around, reproduces (asexually) and gets eaten.
 
@@ -15,34 +15,35 @@ class Collector(CustomAgent):
 
     wood = 0
 
-    def __init__(self, pos, model, moore, wood=0):
-        super().__init__(pos, model, moore=moore)
+    def __init__(self, pos, model, wood=0):
+        super().__init__(pos, model)
         self.wood = wood
 
-    def step(self):
+
+
         '''
         A model step. Move, collect wood if there is any.
-        '''
+
         self.random_move()
         living = True
 
         if self.model.wood:
 
             # If there is wood available, take it
-            this_cell = self.model.grid.get_cell_list_contents([self.pos])
-            chop_tree = random.choice([True,False])
+            this_cell = self.model.grid.get_cell_list_contents([self.position])
+            chop_tree = random.choice([True,True,False])
             for obj in this_cell:
                 if isinstance(obj, WoodResource):
                     wood_patch = obj
                     if wood_patch.fully_grown:
                         if chop_tree:
-                            print('Agent ',self.pos,' chopped the tree')
+                            print('Agent ', self.position, ' chopped the tree')
                             self.wood += 1
                             self.model.grid.remove_agent(obj)
                             self.model.schedule.remove(obj)
                         else:
                             self.wood += 1
-                            wood_patch.fully_grown = False
+                            wood_patch.fully_grown = False'''
 
     def get_wood(self):
         return self.wood

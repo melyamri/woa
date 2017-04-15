@@ -15,9 +15,10 @@ from mesa import Model
 from mesa.space import MultiGrid
 from mesa.datacollection import DataCollector
 
-from world_of_agents_core.agents.collector import Collector
-from world_of_agents_core.agents.wood import WoodResource
-from world_of_agents_core.controller.schedule_controller import RandomActivationByBreed
+from objective.collect_objective import CollectObjective
+from agents.collector import Collector
+from agents.wood import WoodResource
+from controller.schedule_controller import RandomActivationByBreed
 
 
 class CollectorModel(Model):
@@ -67,7 +68,8 @@ class CollectorModel(Model):
             x = random.randrange(self.width)
             y = random.randrange(self.height)
             wood = 0
-            collector = Collector((x, y), self, True, wood)
+            collector = Collector((x, y), self, wood)
+            collector.set_quest(CollectObjective(1))
             self.grid.place_agent(collector, (x, y))
             self.schedule.add(collector)
 

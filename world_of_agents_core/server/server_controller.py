@@ -1,12 +1,12 @@
 from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule
 
-from world_of_agents_core.agents.collector import Collector
-from world_of_agents_core.agents.wood import WoodResource
-from world_of_agents_core.model.collector_model import CollectorModel
+from agents.collector import Collector
+from agents.wood import WoodResource
+from model.collector_model import CollectorModel
 
-mapsize = 40
-ncollectors = 5
+mapsize = 10
+ncollectors = 2
 
 def collector_portrayal(agent):
     if agent is None:
@@ -15,7 +15,7 @@ def collector_portrayal(agent):
     return agent.get_portrayal()
 
 
-canvas_element = CanvasGrid(collector_portrayal, mapsize, mapsize, 600, 600)
+canvas_element = CanvasGrid(collector_portrayal, mapsize, mapsize, 500, 500)
 #chart_element = ChartModule([{"Label": "WoodResource", "Color": "#AA0000"},
 #                              {"Label": "Collector", "Color": "#666666"}])
 
