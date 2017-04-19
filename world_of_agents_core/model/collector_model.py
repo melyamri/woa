@@ -40,6 +40,7 @@ class CollectorModel(Model):
 
     def __init__(self, height=30, width=30,
                  initial_collector=5,
+                 initial_artisans=1,
                  collector_reproduce=0.04,
                  wood=False, wood_regrowth_time=1000):
         '''
@@ -69,7 +70,8 @@ class CollectorModel(Model):
             y = random.randrange(self.height)
             wood = 0
             collector = Collector((x, y), self, wood)
-            collector.set_quest(CollectObjective(1))
+            objective = CollectObjective(1)
+            collector.set_quest(objective)
             self.grid.place_agent(collector, (x, y))
             self.schedule.add(collector)
 

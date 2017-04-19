@@ -25,7 +25,7 @@ class CustomAgent(Agent):
                 Otherwise, only up, down, left, right.
         '''
         super().__init__(pos, model)
-        self.position = pos
+        self.pos = pos
 
     def get_portrayal(self):
         portrayal = {"Shape": "circle",
@@ -35,4 +35,4 @@ class CustomAgent(Agent):
                      "Filled": "true"}
 
     def get_position(self):
-        return self.position
+        return self.pos

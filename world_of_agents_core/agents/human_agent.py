@@ -16,9 +16,7 @@ class HumanAgent(CustomAgent):
 
     '''
 
-    objectives = []
-
-    def __init__(self, position, model):
+    def __init__(self, pos, model):
         '''
         map: The MultiGrid object in which the agent lives.
         x: The agent's current x coordinate
@@ -26,18 +24,20 @@ class HumanAgent(CustomAgent):
         multi_direction_movement: If True, may move in all 8 directions.
                 Otherwise, only up, down, left, right.
         '''
-        super().__init__(position, model)
+        super().__init__(pos, model)
+        self.objectives = []
 
-    def random_move(self):
+    def move(self):
         '''
         Step one cell in any allowable direction.
         '''
         # Pick the next cell from the adjacent cells.
-        next_moves = self.model.grid.get_neighborhood(self.position, True ,False)
+        next_moves = self.model.grid.get_neighborhood(self.pos, True ,False)
         next_move = random.choice(next_moves)
         # Now move:
+        print("El agente ",self.pos," se mueve a la casilla ", next_move)
         self.model.grid.move_agent(self, next_move)
-        self.position = next_move
+        #self.pos = next_move
 
     def set_quest(self,objective):
         self.objectives.append(objective)
@@ -47,5 +47,4 @@ class HumanAgent(CustomAgent):
             objective.execute(self)
 
     def step(self):
-        self.random_move()
         self.execute_objectives()
