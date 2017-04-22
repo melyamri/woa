@@ -3,7 +3,7 @@ from mesa.visualization.modules import CanvasGrid, ChartModule
 
 from agents.collector import Collector
 from agents.wood import WoodResource
-from model.collector_model import CollectorModel
+from models.world import World
 
 mapsize = 20
 ncollectors = 2
@@ -21,12 +21,11 @@ canvas_element = CanvasGrid(collector_portrayal, mapsize, mapsize, 500, 500)
 #                              {"Label": "Collector", "Color": "#666666"}])
 
 
-server = ModularServer(CollectorModel, [canvas_element],
+server = ModularServer(World, [canvas_element],
                        "WoodCollector",
                        wood=True,
                        height=mapsize,
                        width=mapsize,
                        initial_collector=ncollectors,
                        initial_artisans=nartisans,
-                       collector_reproduce=0.04,
                        wood_regrowth_time=1000)

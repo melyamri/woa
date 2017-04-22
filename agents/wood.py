@@ -7,6 +7,10 @@ class WoodResource(CustomAgent):
     A patch of wood that grows at a fixed rate and it is collected by the collector
     '''
 
+    fully_grown = False
+    countdown = 10
+    spread_chance = 0.01
+
     def __init__(self, pos, model, fully_grown, countdown):
         '''
         Creates a new patch of wood
@@ -52,16 +56,11 @@ class WoodResource(CustomAgent):
                 self.spread_chance += 0.005
 
     def get_portrayal(self):
-
-        portrayal = {"Shape": "circle",
-                     "r": 1,
-                     "Color": "green",
-                     "Layer": 1,
-                     "Filled": "true"}
-
-        if self.fully_grown:
-            portrayal["r"] = "1"
-        else:
-            portrayal["r"] = "0.31"
-
-        return portrayal
+        return {
+            "Shape": "circle",
+            "r": 1,
+            "Color": "green",
+            "Layer": 1,
+            "Filled": "true",
+            "r" : "1" if self.fully_grown else "0.31"
+        }
