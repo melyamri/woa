@@ -34,3 +34,8 @@ virtualenv -p python3 venv
 source venv/bin/activate #sólo con virtualenv
 pip install -r requirements.txt
 ```
+
+## Freeze Requirements (Only to save new installed packages with pip)
+```
+pip freeze > requirements.txt
+```
