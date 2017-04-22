@@ -1,7 +1,7 @@
 appdirs==1.4.3
 backports-abc==0.5
 certifi==2017.1.23
--e git+https://github.com/crowtec/mesa@1bdc4fbfcada9215730d6eddee3fb2ee83c63369#egg=Mesa
+-e git+https://github.com/projectmesa/mesa@1bdc4fbfcada9215730d6eddee3fb2ee83c63369#egg=Mesa
 numpy==1.12.1
 packaging==16.8
 pandas==0.19.2
