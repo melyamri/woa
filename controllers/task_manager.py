@@ -1,11 +1,11 @@
-from tasks import *
+from tasks.move_task import MoveTask
 
-class TaskManager:
+class TaskManager():
 
-    self.MOVE = MoveTask()
+    MOVE = MoveTask()
 
     def __init__(self):
         return
-        
-    def execute(self, task, agent):
+
+    def execute(task, agent):
         task.execute(agent)

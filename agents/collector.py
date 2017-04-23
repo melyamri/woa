@@ -18,7 +18,7 @@ class Collector(CustomAgent):
             "Shape": "rect",
             "h": 1,
             "w": 1,
-            "Color": red if (self.get_wood() > 10) else "blue",
+            "Color": red if (self.wood > 10) else "blue",
             "Layer": 2,
             "Filled": "true"
         }

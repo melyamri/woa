@@ -3,9 +3,10 @@ Generalized behavior for random walking, one grid cell at a time.
 '''
 
 from mesa import Agent
-from intellect.Intellect import Intellect
+from controllers.task_manager import TaskManager
+# from intellect.Intellect import Intellect
 
-class CustomAgent(Agent, Intellect):
+class CustomAgent(Agent):
     x = None
     y = None
 
@@ -13,7 +14,7 @@ class CustomAgent(Agent, Intellect):
         super().__init__(position, model)
         self.position = position
         self.objectives = []
-        self.learn(file)
+        # self.learn(file)
 
     def get_portrayal(self):
         return {
@@ -29,10 +30,11 @@ class CustomAgent(Agent, Intellect):
         self.objectives.append(objective)
 
     def execute_task(self, task):
-        task_manager.execute(task, self)
+        TaskManager.execute(task, self)
 
     def decide(self):
-        self.reason(self.class_name)
+        # self.reason(self.class_name)
+        self.execute_task(TaskManager.MOVE)
 
     def step(self):
         self.decide()
