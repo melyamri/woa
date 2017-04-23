@@ -41,7 +41,7 @@ class World(Model):
             y = random.randrange(self.height)
             collector = Collector((x, y), self, wood)
             objective = CollectObjective(1)
-            # collector.add_objective(objective)
+            collector.add_objective(objective)
             self.grid.place_agent(collector, (x, y))
             self.schedule.add(collector)
 

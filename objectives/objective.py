@@ -8,3 +8,6 @@ class Objective():
 
     def __init__(self, priority):
         self.priority = priority
+
+    def class_name(self):
+        return "Objective"

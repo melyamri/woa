@@ -1,11 +1,10 @@
-import random
 from agents.custom_agent import CustomAgent
 
 class Collector(CustomAgent):
     wood = 0
 
     def __init__(self, pos, model, wood=0):
-        super().__init__(pos, model)#, "rules/collector.drl")
+        super().__init__(pos, model)
         self.wood = wood
 
     def get_portrayal(self):

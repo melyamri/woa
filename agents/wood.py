@@ -63,3 +63,7 @@ class Wood(CustomAgent):
             "Filled": "true",
             "r" : "1" if self.fully_grown else "0.31"
         }
+
+
+    def class_name(self):
+        return "Wood"
