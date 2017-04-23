@@ -14,4 +14,3 @@ singledispatch==3.4.0.3
 six==1.10.0
 tornado==4.4.2
 tqdm==4.11.2
-https://downloads.sourceforge.net/project/pyke/pyke/1.1.1/pyke3-1.1.1.zip

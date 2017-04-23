@@ -4,6 +4,7 @@ Generalized behavior for random walking, one grid cell at a time.
 
 from mesa import Agent
 from controllers.task_manager import TaskManager
+from py4j.java_gateway import JavaGateway
 # from intellect.Intellect import Intellect
 
 class CustomAgent(Agent):
@@ -14,6 +15,8 @@ class CustomAgent(Agent):
         super().__init__(position, model)
         self.position = position
         self.objectives = []
+        gateway = JavaGateway()
+        self.knowledge_session = gateway.entry_point.getKnowledgeSession("rules/collector.drl")
         # self.learn(file)
 
     def get_portrayal(self):
