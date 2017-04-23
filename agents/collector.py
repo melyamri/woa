@@ -10,7 +10,7 @@ class Collector(CustomAgent):
     wood = 0
 
     def __init__(self, pos, model, wood=0):
-        super().__init__(pos, model, "rules/collector.policy")
+        super().__init__(pos, model, "rules/collector.drl")
         self.wood = wood
 
     def get_portrayal(self):
