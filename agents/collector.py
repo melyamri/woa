@@ -1,12 +1,7 @@
 import random
+from agents.custom_agent import CustomAgent
 
-from mesa import Agent
-
-from agents.human_agent import HumanAgent
-from agents.wood import WoodResource
-
-
-class Collector(HumanAgent):
+class Collector(CustomAgent):
     wood = 0
 
     def __init__(self, pos, model, wood=0):
@@ -22,3 +17,6 @@ class Collector(HumanAgent):
             "Layer": 2,
             "Filled": "true"
         }
+
+    def class_name(self):
+        return "Collector"

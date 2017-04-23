@@ -1,4 +1,3 @@
-'''
 from tasks.move_task import MoveTask
 
 class TaskManager():
@@ -10,4 +9,3 @@ class TaskManager():
 
     def execute(task, agent):
         task.execute(agent)
-'''

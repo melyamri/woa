@@ -6,7 +6,7 @@ from mesa.datacollection import DataCollector
 
 from objectives.collect_objective import CollectObjective
 from agents.collector import Collector
-from agents.wood import WoodResource
+from agents.wood import Wood
 from controllers.world_controller import WorldController
 
 
@@ -41,12 +41,12 @@ class World(Model):
             y = random.randrange(self.height)
             collector = Collector((x, y), self, wood)
             objective = CollectObjective(1)
-            collector.set_objective(objective)
+            # collector.add_objective(objective)
             self.grid.place_agent(collector, (x, y))
             self.schedule.add(collector)
 
 
-         #Create wood patches
+        #  Create wood patches
             if self.wood:
 
              for agent, x, y in self.grid.coord_iter():
@@ -59,7 +59,7 @@ class World(Model):
                      else:
                          countdown = random.randrange(self.wood_regrowth_time)
 
-                     patch = WoodResource((x, y), self, fully_grown, countdown)
+                     patch = Wood((x, y), self, fully_grown, countdown)
                      self.grid.place_agent(patch, (x, y))
                      self.schedule.add(patch)
 
@@ -74,13 +74,11 @@ class World(Model):
     def run_model(self, step_count=200):
 
         if self.verbose:
-            print('Initial number collector: ',
-                  self.schedule.get_breed_count(Collector))
+            print('Initial number collector: ', self.schedule.get_breed_count(Collector))
 
         for i in range(step_count):
             self.step()
 
         if self.verbose:
             print('')
-            print('Final number collector: ',
-                  self.schedule.get_breed_count(Collector))
+            print('Final number collector: ', self.schedule.get_breed_count(Collector))

@@ -1,9 +1,9 @@
 class Objective():
-    self.PENDING = "pending"
-    self.SOLVING = "solving"
-    self.FINISHED = "finished"
+    PENDING = "pending"
+    SOLVING = "solving"
+    FINISHED = "finished"
 
-    status = Objective.PENDING
+    status = PENDING
     priority = 0
 
     def __init__(self, priority):

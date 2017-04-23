@@ -2,7 +2,7 @@ import random
 
 from agents.custom_agent import CustomAgent
 
-class WoodResource(CustomAgent):
+class Wood(CustomAgent):
     '''
     A patch of wood that grows at a fixed rate and it is collected by the collector
     '''
@@ -43,10 +43,10 @@ class WoodResource(CustomAgent):
                 this_cell = self.model.grid.get_cell_list_contents(spread_target)
                 theres_wood = False
                 for obj in this_cell:
-                    if isinstance(obj, WoodResource):
+                    if isinstance(obj, Wood):
                         theres_wood = True
                 if not theres_wood:
-                    patch = WoodResource(spread_target, self, False, self.model.wood_regrowth_time)
+                    patch = Wood(spread_target, self, False, self.model.wood_regrowth_time)
                     print('Agent ', self.pos, ' is spreading into', spread_target)
                     self.model.grid.place_agent(patch, spread_target)
                     self.model.schedule.add(patch)

@@ -1,8 +1,8 @@
-from objectives.basic_objective import BasicObjective
+from objectives.objective import Objective
 from tasks.collect_task import CollectTask
 from tasks.move_task import MoveTask
 
-class CollectObjective(BasicObjective):
+class CollectObjective(Objective):
 
     def __init__(self, priority):
         super().__init__(priority)
@@ -25,7 +25,7 @@ class CollectObjective(BasicObjective):
             this_cell = agent.model.grid.get_cell_list_contents([agent.pos])
             chop_tree = random.choice([True, True, False])
             for obj in this_cell:
-                if isinstance(obj, WoodResource):
+                if isinstance(obj, Wood):
                     wood_patch = obj
                     if wood_patch.fully_grown:
                         if chop_tree:

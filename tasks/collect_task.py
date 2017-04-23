@@ -1,31 +1,28 @@
 from tasks.basic_task import BasicTask
 from agents.collector import Collector
-from agents.wood import WoodResource
+from agents.wood import Wood
 import random
 
 class CollectTask(BasicTask):
 
-    def __init__(self, agent):
-        super().__init__(agent)
-
-    def execute(self):
-        if not isinstance(self.agent, Collector):
+    def execute(self, agent):
+        if not isinstance(agent, Collector):
             raise Exception('El objetivo de recolectar solo se puede asignar a un recolector'   )
 
-        if self.agent.model.wood:
+        if agent.model.wood:
 
             # If there is wood available, take it
-            this_cell = self.agent.model.grid.get_cell_list_contents([self.agent.pos])
+            this_cell = agent.model.grid.get_cell_list_contents([agent.pos])
             chop_tree = random.choice([True, True, False])
             for obj in this_cell:
-                if isinstance(obj, WoodResource):
+                if isinstance(obj, Wood):
                     wood_patch = obj
                     if wood_patch.fully_grown:
                         if chop_tree:
-                            print('Agent ', self.agent.pos, ' chopped the tree')
-                            self.agent.wood += 1
-                            self.agent.model.grid.remove_agent(obj)
-                            self.agent.model.schedule.remove(obj)
+                            print('Agent ', agent.pos, ' chopped the tree')
+                            agent.wood += 1
+                            agent.model.grid.remove_agent(obj)
+                            agent.model.schedule.remove(obj)
                         else:
-                            self.agent.wood += 1
+                            agent.wood += 1
                             wood_patch.fully_grown = False
