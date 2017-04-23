@@ -13,3 +13,4 @@ singledispatch==3.4.0.3
 six==1.10.0
 tornado==4.4.2
 tqdm==4.11.2
+Werkzeug==0.12.1

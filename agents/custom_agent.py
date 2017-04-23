@@ -1,17 +1,13 @@
-'''
-Generalized behavior for random walking, one grid cell at a time.
-'''
-
 from mesa import Agent
-#from controllers.task_manager import TaskManager
-from py4j.java_gateway import JavaGateway, CallbackServerParameters
-# from intellect.Intellect import Intellect
+from controllers.task_manager import TaskManager
+from controllers.rule_manager import RuleManager
+import os
 
-class CustomAgent(Agent, object):
+class CustomAgent(Agent):
     x = None
     y = None
 
-    def __init__(self, position, model,): # file):
+    def __init__(self, position, model):
         super().__init__(position, model)
         self.pos = position
         self.objectives = []
@@ -30,10 +26,6 @@ class CustomAgent(Agent, object):
             "Filled": "true"
         }
 
-    '''
-    def test(self, name):
-        print(name)
-
     def add_objective(self, objective):
         self.objectives.append(objective)
 
@@ -41,9 +33,7 @@ class CustomAgent(Agent, object):
         TaskManager.execute(task, self)
 
     def decide(self):
-        # self.reason(self.class_name)
-        # self.execute_task(TaskManager.MOVE)
-        self.knowledge_session.fireAllRules()
+        RuleManager.reason(self)
 
     def step(self):
         self.decide()
@@ -53,5 +43,3 @@ class CustomAgent(Agent, object):
 
     def _get_object_id(f):
         return "CustomAgent"
-'''
-

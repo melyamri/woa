@@ -1,10 +1,10 @@
-from objective.move_objective import MoveObjective
+from objective.move_objective import Objective
 from agents.collector import Collector
 from agents.artisan import Artisan
-from agents.wood import WoodResource
+from agents.wood import Wood
 import random
 
-class CreateToolsObjective(MoveObjective):
+class CreateToolsObjective(Objective):
 
     def __init__(self, priority):
         super().__init__(priority)
@@ -25,7 +25,7 @@ class CreateToolsObjective(MoveObjective):
             this_cell = agent_source.model.grid.get_cell_list_contents([agent_source.pos])
             chop_tree = random.choice([True, True, False])
             for obj in this_cell:
-                if isinstance(obj, WoodResource):
+                if isinstance(obj, Wood):
                     wood_patch = obj
                     if wood_patch.fully_grown:
                         if chop_tree:

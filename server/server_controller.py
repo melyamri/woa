@@ -2,7 +2,7 @@ from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule, TextElement
 
 from agents.collector import Collector
-from agents.wood import WoodResource
+from agents.wood import Wood
 from models.world import World
 from models.tracer import Tracer
 
@@ -18,7 +18,7 @@ def collector_portrayal(agent):
 
 
 canvas_element = CanvasGrid(collector_portrayal, mapsize, mapsize, 500, 500)
-#chart_element = ChartModule([{"Label": "WoodResource", "Color": "#AA0000"},
+#chart_element = ChartModule([{"Label": "Wood", "Color": "#AA0000"},
 #                              {"Label": "Collector", "Color": "#666666"}])
 
 tracer = Tracer("log")

@@ -1,7 +1,7 @@
 class BasicTask():
 
-    def __init__(self, agent):
-        self.agent = agent
+    def __init__(self):
+        return
 
-    def execute(self):
+    def execute(self, agent, **kwargs):
         return
