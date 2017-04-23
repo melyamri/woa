@@ -1,5 +1,18 @@
 # WORLD OF AGENTS
 
+## Cambios del 22 y 23 de abril
+### Añadido sistema de reglas y estructura correcta
+  - Ahora las tareas son independientes de los agentes y tienen su propio manager
+  - Los objetivos son objetivos simples y no están mezclados con las tareas
+  - Se ha creado un sistema de reglas básico y eficiente
+  - Se ha mejorado el estilo visual y se ha incluido un log de las tareas que se van ejecutando
+  - Ahora los agentes son capaces de razonar
+  - Se han descartado los siguientes sistemas de reglas:
+    - *Intellect (Versión necesaria Python 2.7)*
+    - *Pyke (No válido para el funcionamiento esperado)*
+    - *durable_rules (Necesita permisos de super usuario y base de datos REDIS, además necesita que se escriba en esa base de datos para leer los objetos)*
+
+
 ## Cambios del 15 de abril
 ### Añadido sistema de objetivos para los agentes
   - Ahora los agentes tienen un array de objetivos
