@@ -51,13 +51,13 @@ class WoodResource(CustomAgent):
                     self.model.grid.place_agent(patch, spread_target)
                     self.model.schedule.add(patch)
                 else:
-                    print('There\'s already wood in', spread_target)
+                    self.log('No se puede expandir a ' + str(spread_target))
             else:
                 self.spread_chance += 0.005
 
     def get_portrayal(self):
         return {
-            "Shape": "circle",
+            "Shape": "assets/wood_big.png" if self.fully_grown else "assets/wood_small.png",
             "Color": "green",
             "Layer": 1,
             "Filled": "true",

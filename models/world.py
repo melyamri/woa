@@ -19,7 +19,7 @@ class World(Model):
     wood_regrowth_time = 300
 
     verbose = False  # Print-monitoring
-
+    log = []
     def __init__(self, height=30, width=30,
                  initial_collector=5,
                  initial_artisans=1,
@@ -34,7 +34,7 @@ class World(Model):
 
         self.schedule = WorldController(self)
         self.grid = MultiGrid(self.height, self.width, torus=False)
-
+        self.log = []
         # Create collector:
         for i in range(self.initial_collector):
             x = random.randrange(self.width)

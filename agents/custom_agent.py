@@ -15,18 +15,12 @@ class CustomAgent(Agent, object):
         super().__init__(position, model)
         self.pos = position
         self.objectives = []
-#        gateway = JavaGateway(callback_server_parameters=CallbackServerParameters())
-        # self.knowledge_session = gateway.entry_point.getKnowledgeSession("rules/collector.drl")
- #       gateway.entry_point.runTest(self)
+        self.model = model
 
-  #      gateway.shutdown()
-        # self.knowledge_session.insert(self);
-        # self.learn(file)
+    def log(self, text):
+        self.model.log.append(text)
+        self.model.log = self.model.log[-5:]
 
-    '''
-        class Java:
-        implements = ["woa.drools.CustomAgent"]
-'''
     def get_portrayal(self):
         return {
             "Shape": "circle",
@@ -60,3 +54,4 @@ class CustomAgent(Agent, object):
     def _get_object_id(f):
         return "CustomAgent"
 '''
+

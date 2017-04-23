@@ -13,7 +13,7 @@ class Artisan(HumanAgent):
         self.tools = 0
 
     def get_portrayal(self):
-        portrayal = {"Shape": "rect",
+        portrayal = {"Shape": "assets/artisan.png",
                      "h": 1,
                      "w": 1,
                      "Color": "green",

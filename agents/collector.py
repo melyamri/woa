@@ -15,7 +15,7 @@ class Collector(HumanAgent):
 
     def get_portrayal(self):
         return {
-            "Shape": "rect",
+            "Shape": "assets/collector_full.png" if (self.wood > 10) else "assets/collector.png",
             "h": 1,
             "w": 1,
             "Color": "red" if (self.wood > 10) else "blue",

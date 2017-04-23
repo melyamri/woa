@@ -35,7 +35,8 @@ class HumanAgent(CustomAgent):
         next_moves = self.model.grid.get_neighborhood(self.pos, True ,False)
         next_move = random.choice(next_moves)
         # Now move:
-        print("El agente ",self.pos," se mueve a la casilla ", next_move)
+        self.log("El agente " + str(self.pos) + " se mueve a la casilla " +  str(next_move))
+
         self.model.grid.move_agent(self, next_move)
         #self.pos = next_move
 
@@ -49,7 +50,7 @@ class HumanAgent(CustomAgent):
                 best_pos = (px,px)
         next_move = best_pos
         # Now move:
-        print("El agente ",self.pos," se mueve a la casilla ", next_move)
+        self.log("El agente " + str(self.pos) + " se mueve a la casilla " + str(next_move))
         self.model.grid.move_agent(self, next_move)
 
     def set_objective(self,objective):
