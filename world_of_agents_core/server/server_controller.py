@@ -6,7 +6,7 @@ from agents.wood import WoodResource
 from model.collector_model import CollectorModel
 
 mapsize = 20
-ncollectors = 2
+ncollectors = 1
 nartisans = 1
 
 def collector_portrayal(agent):

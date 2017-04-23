@@ -62,7 +62,7 @@ class CollectorModel(Model):
         self.wood_regrowth_time = wood_regrowth_time
 
         self.schedule = RandomActivationByBreed(self)
-        self.grid = MultiGrid(self.height, self.width, torus=True)
+        self.grid = MultiGrid(self.height, self.width, torus=False)
 
         # Create collector:
         for i in range(self.initial_collector):

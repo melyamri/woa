@@ -4,7 +4,7 @@ from agents.artisan import Artisan
 from agents.wood import WoodResource
 import random
 
-class ToolObjective(MoveObjective):
+class CreateToolsObjective(MoveObjective):
 
     def __init__(self, priority):
         super().__init__(priority)

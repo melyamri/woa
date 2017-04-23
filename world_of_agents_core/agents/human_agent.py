@@ -26,6 +26,7 @@ class HumanAgent(CustomAgent):
         '''
         super().__init__(pos, model)
         self.objectives = []
+        self.tasks = []
 
     def move(self):
         '''
@@ -39,6 +40,19 @@ class HumanAgent(CustomAgent):
         self.model.grid.move_agent(self, next_move)
         #self.pos = next_move
 
+    def move_to(self, target):
+        (x, y) = target
+        next_moves = self.model.grid.get_neighborhood(self.pos, True ,False)
+        best_pos = next_moves[0]
+        for px, py in next_moves:
+            (bx, by) = best_pos
+            if (abs(x-px)+abs(y-py)) <   (abs(x-bx)+abs(y-by)):
+                best_pos = (px,px)
+        next_move = best_pos
+        # Now move:
+        print("El agente ",self.pos," se mueve a la casilla ", next_move)
+        self.model.grid.move_agent(self, next_move)
+
     def set_quest(self,objective):
         self.objectives.append(objective)
 
@@ -48,3 +62,12 @@ class HumanAgent(CustomAgent):
 
     def step(self):
         self.execute_objectives()
+        self.execute_tasks()
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def execute_tasks(self):
+        for task in self.tasks:
+            task.execute()
+        self.tasks = []

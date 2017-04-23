@@ -1,16 +1,23 @@
-from objective.move_objective import MoveObjective
-from agents.collector import Collector
-from agents.wood import WoodResource
-import random
 
-class CollectObjective(MoveObjective):
+from agents.collector import Collector
+from objective.basic_objective import BasicObjective
+from tasks.collect_task import CollectTask
+from tasks.move_task import MoveTask
+from tasks.move_to_task import MoveToTask
+
+class CollectObjective(BasicObjective):
 
     def __init__(self, priority):
         super().__init__(priority)
 
     def execute(self, agent):
+        if self.active:
+            collect_task = CollectTask(agent)
+            move_task = MoveToTask(agent, 10, 8)
+            agent.add_task(move_task)
+            agent.add_task(collect_task)
 
-        if not isinstance(agent, Collector):
+            ''' if not isinstance(agent, Collector):
             raise Exception('El objetivo de recolectar solo se puede asignar a un recolector')
 
         super().execute(agent)
@@ -31,4 +38,4 @@ class CollectObjective(MoveObjective):
                             agent.model.schedule.remove(obj)
                         else:
                             agent.wood += 1
-                            wood_patch.fully_grown = False
+                            wood_patch.fully_grown = False'''
