@@ -1,7 +1,6 @@
-from agents.human_agent import HumanAgent
+from agents.custom_agent import CustomAgent
 
-
-class Artisan(HumanAgent):
+class Artisan(CustomAgent):
     '''
     A sheep that walks around, reproduces (asexually) and gets eaten.
 
@@ -13,7 +12,7 @@ class Artisan(HumanAgent):
         self.tools = 0
 
     def get_portrayal(self):
-        portrayal = {"Shape": "assets/artisan.png",
+        portrayal = {"Shape": "assets/art_full.png" if (self.tools > 0) else "assets/art.png",
                      "h": 1,
                      "w": 1,
                      "Color": "green",
@@ -24,3 +23,19 @@ class Artisan(HumanAgent):
             portrayal["Color"] = "black"
 
         return portrayal
+
+    def class_name(self):
+        return "Artisan"
+
+    def get_n_tools(self):
+        return self.tools
+
+    def receive_wood(self):
+        self.tools += 1
+
+    def give_tools(self):
+        if self.tools > 0:
+            self.tools -= 1
+            return True
+        else:
+            return False

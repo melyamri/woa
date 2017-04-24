@@ -1,6 +1,7 @@
 import random
 
 from agents.custom_agent import CustomAgent
+from agents.house import House
 
 class Wood(CustomAgent):
     '''
@@ -43,7 +44,7 @@ class Wood(CustomAgent):
                 this_cell = self.model.grid.get_cell_list_contents(spread_target)
                 theres_wood = False
                 for obj in this_cell:
-                    if isinstance(obj, Wood):
+                    if isinstance(obj, Wood) or isinstance(obj, House):
                         theres_wood = True
                 if not theres_wood:
                     patch = Wood(spread_target, self, False, self.model.wood_regrowth_time)
@@ -57,7 +58,7 @@ class Wood(CustomAgent):
 
     def get_portrayal(self):
         return {
-            "Shape": "assets/wood_big.png" if self.fully_grown else "assets/wood_small.png",
+            "Shape": "assets/wood2.png" if self.fully_grown else "assets/wood2_s.png",
             "Color": "green",
             "Layer": 1,
             "Filled": "true",

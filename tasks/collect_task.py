@@ -3,7 +3,7 @@ import random
 
 class CollectTask(BasicTask):
 
-    def execute(self, agent):
+    def execute(self, agent,  **kwargs):
         if agent.class_name() is not "Collector":
             raise Exception('El objetivo de recolectar solo se puede asignar a un recolector'   )
 

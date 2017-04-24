@@ -1,6 +1,7 @@
 from mesa import Agent
 from controllers.task_manager import TaskManager
 from controllers.rule_manager import RuleManager
+from objectives.simple_objective import SimpleObjective
 import os
 
 class CustomAgent(Agent):
@@ -10,8 +11,9 @@ class CustomAgent(Agent):
     def __init__(self, position, model):
         super().__init__(position, model)
         self.pos = position
-        self.objectives = []
+        self.objective = SimpleObjective()
         self.model = model
+        self.quest_giver = None
 
     def log(self, text):
         self.model.log.append(text)
@@ -26,8 +28,10 @@ class CustomAgent(Agent):
             "Filled": "true"
         }
 
-    def add_objective(self, objective):
-        self.objectives.append(objective)
+    def add_objective(self, objective, quest_giver):
+        if self.objective.priority < objective.priority:
+            self.objective = objective
+            self.quest_giver = quest_giver
 
     def execute_task(self, task):
         TaskManager.execute(task, self)

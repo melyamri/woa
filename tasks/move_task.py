@@ -3,7 +3,7 @@ import random
 
 class MoveTask(BasicTask):
 
-    def execute(self, agent):
+    def execute(self, agent,  **kwargs):
         '''
         Step one cell in any allowable direction.
         '''
