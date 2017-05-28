@@ -11,6 +11,7 @@ from agents.collector import Collector
 from agents.artisan import Artisan
 from agents.builder import Builder
 from agents.wood import Wood
+from agents.house import House
 
 from controllers.world_controller import WorldController
 
@@ -46,7 +47,13 @@ class World(Model):
         self.grid = MultiGrid(self.height, self.width, torus=False)
         self.log = []
 
-
+        self.datacollector = DataCollector(
+            {"Wood": lambda m: m.schedule.get_breed_count(Wood),
+             "Collectors": lambda m: m.schedule.get_breed_count(Collector),
+             "Artisans": lambda m: m.schedule.get_breed_count(Artisan),
+             "Builders": lambda m: m.schedule.get_breed_count(Builder),
+             "Houses": lambda m: m.schedule.get_breed_count(House),
+            })
 
 
         for i in range(self.initial_collector):
@@ -93,6 +100,7 @@ class World(Model):
 
     def step(self):
         self.schedule.step()
+        self.datacollector.collect(self)
         if self.verbose:
             print('Step: ',[self.schedule.time,
                    self.schedule.get_breed_count(Collector)])

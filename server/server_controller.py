@@ -24,8 +24,14 @@ canvas_element = CanvasGrid(collector_portrayal, mapsize, mapsize, 600, 600)
 
 tracer = Tracer("log")
 
+chart = ChartModule([{"Label": "Wood", "Color": "green"},
+                      {"Label": "Collectors", "Color": "blue"},
+                      {"Label": "Artisans", "Color": "red"},
+                      {"Label": "Builders", "Color": "yellow"},
+                      {"Label": "Houses", "Color": "black"}],
+                        data_collector_name='datacollector')
 
-server = ModularServer(World, [canvas_element, tracer],
+server = ModularServer(World, [canvas_element, tracer, chart],
                        "",
                        wood=True,
                        height=mapsize,

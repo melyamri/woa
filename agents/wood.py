@@ -51,6 +51,7 @@ class Wood(CustomAgent):
                     print('Agent ', self.pos, ' is spreading into', spread_target)
                     self.model.grid.place_agent(patch, spread_target)
                     self.model.schedule.add(patch)
+
                 else:
                     self.log('No se puede expandir a ' + str(spread_target))
             else:
