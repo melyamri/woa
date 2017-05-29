@@ -2,10 +2,12 @@ from agents.custom_agent import CustomAgent
 
 class Collector(CustomAgent):
     wood = 0
+    iron = 0
 
     def __init__(self, pos, model):
         super().__init__(pos, model)
         self.wood = 0
+        self.iron = 0
 
     def get_portrayal(self):
         return {
@@ -26,6 +28,17 @@ class Collector(CustomAgent):
     def give_wood(self):
         if self.wood > 0:
             self.wood -= 1
+            return True
+        else:
+            return False
+
+    def check_iron(self):
+        return self.iron
+
+
+    def give_iron(self):
+        if self.iron >0:
+            self.iron -=1
             return True
         else:
             return False

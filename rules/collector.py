@@ -34,13 +34,15 @@ def rule_move(agent):
 def rule_collect(agent):
     if agent.objective.class_name() == "CollectObjective" \
             and agent.objective.status == Objective.SOLVING\
-            and agent.check_wood() < 1:
+            and agent.check_wood() < 1\
+            and agent.check_iron() < 1:
         agent.execute_task(TaskManager.COLLECT)
 
 def rule_give(agent):
     if agent.objective.class_name() == "CollectObjective" \
             and agent.objective.status == Objective.SOLVING\
             and agent.check_wood() > 0\
+            and agent.check_iron() > 0\
             and artisan_in_range(agent):
         agent.execute_task(TaskManager.GIVE)
         agent.objective.status = Objective.FINISHED

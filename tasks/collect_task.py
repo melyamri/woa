@@ -24,3 +24,19 @@ class CollectTask(BasicTask):
                         else:
                             agent.wood += 1
                             wood_patch.fully_grown = False
+
+        if agent.model.iron:
+
+            # If there is iron available, take it
+            this_cell = agent.model.grid.get_cell_list_contents([agent.pos])
+            chop_tree = random.choice([True, True, False])
+            for obj in this_cell:
+                if obj.class_name() is "Mine":
+                    mine = obj
+                    if  not mine.empty:
+                        agent.iron +=1
+                        mine.resources -=1
+                        if mine.resources == 0:
+                            mine.empty = True
+                            agent.model.grid.remove_agent(obj)
+                            agent.model.schedule.remove(obj)

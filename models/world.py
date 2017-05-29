@@ -11,7 +11,6 @@ from agents.collector import Collector
 from agents.artisan import Artisan
 from agents.builder import Builder
 from agents.wood import Wood
-from agents.house import House
 
 from controllers.world_controller import WorldController
 
@@ -23,6 +22,7 @@ class World(Model):
     initial_collector = 0
     wood = False
     wood_regrowth_time = 300
+    iron = False
 
     verbose = False  # Print-monitoring
     log = []
@@ -30,7 +30,7 @@ class World(Model):
                  initial_collector=5,
                  initial_artisans=1,
                  initial_builders=1,
-                 wood=False, wood_regrowth_time=1000):
+                 wood=False, iron = False, wood_regrowth_time=1000):
 
         # Set parameters
         self.height = height
@@ -41,19 +41,14 @@ class World(Model):
         self.initial_builders = initial_builders
 
         self.wood = wood
+        self.iron = iron
         self.wood_regrowth_time = wood_regrowth_time
 
         self.schedule = WorldController(self)
         self.grid = MultiGrid(self.height, self.width, torus=False)
         self.log = []
 
-        self.datacollector = DataCollector(
-            {"Wood": lambda m: m.schedule.get_breed_count(Wood),
-             "Collectors": lambda m: m.schedule.get_breed_count(Collector),
-             "Artisans": lambda m: m.schedule.get_breed_count(Artisan),
-             "Builders": lambda m: m.schedule.get_breed_count(Builder),
-             "Houses": lambda m: m.schedule.get_breed_count(House),
-            })
+
 
 
         for i in range(self.initial_collector):
@@ -96,11 +91,22 @@ class World(Model):
                  self.grid.place_agent(patch, (x, y))
                  self.schedule.add(patch)
 
+        if self.iron:
+            for agent, x, y in self.grid.coord_iter():
+                place_iron = random.choice([True, False, False, False, False])
+                if place_iron:
+                    empty = False
+                    patch = Wood((x, y), self, empty)
+                    self.grid.place_agent(patch, (x, y))
+                    self.schedule.add(patch)
+
         self.running = True
+
+
+
 
     def step(self):
         self.schedule.step()
-        self.datacollector.collect(self)
         if self.verbose:
             print('Step: ',[self.schedule.time,
                    self.schedule.get_breed_count(Collector)])
