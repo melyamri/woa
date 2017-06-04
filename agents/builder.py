@@ -1,8 +1,9 @@
-from agents.custom_agent import CustomAgent
+from agents.active_agent import ActiveAgent
 from agents.wood import Wood
 from agents.house import House
+from agents.mine import Mine
 
-class Builder(CustomAgent):
+class Builder(ActiveAgent):
     '''
     A sheep that walks around, reproduces (asexually) and gets eaten.
 
@@ -14,7 +15,7 @@ class Builder(CustomAgent):
         self.tools = 0
 
     def get_portrayal(self):
-        portrayal = {"Shape": "assets/build_full.png" if (self.tools > 0) else "assets/build.png",
+        portrayal = {"Shape": "assets/builder_full.gif" if (self.tools > 0) else "assets/builder.gif",
                      "h": 1,
                      "w": 1,
                      "Color": "#aa6633",
@@ -32,13 +33,14 @@ class Builder(CustomAgent):
             clean_terrain = True
             contents = self.model.grid.get_cell_list_contents(self.pos)
             for obj in contents:
-                if isinstance(obj, Wood):
+                if isinstance(obj, Wood) or isinstance(obj, House) or isinstance(obj, Mine):
                     clean_terrain = False
             if clean_terrain:
                 (x,y) = self.pos
                 self.tools -= 1
                 house = House(self.pos,self.model)
                 self.model.grid.place_agent(house, (x, y))
+                self.model.schedule.add(house)
 
     def class_name(self):
         return "Builder"

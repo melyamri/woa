@@ -1,9 +1,10 @@
 import random
 
-from agents.custom_agent import CustomAgent
+from agents.inert_agent import InertAgent
 from agents.house import House
+from agents.mine import Mine
 
-class Wood(CustomAgent):
+class Wood(InertAgent):
     '''
     A patch of wood that grows at a fixed rate and it is collected by the collector
     '''
@@ -44,28 +45,27 @@ class Wood(CustomAgent):
                 this_cell = self.model.grid.get_cell_list_contents(spread_target)
                 theres_wood = False
                 for obj in this_cell:
-                    if isinstance(obj, Wood) or isinstance(obj, House):
+                    if isinstance(obj, Wood) or isinstance(obj, House) or isinstance(obj, Mine):
                         theres_wood = True
                 if not theres_wood:
                     patch = Wood(spread_target, self, False, self.model.wood_regrowth_time)
-                    print('Agent ', self.pos, ' is spreading into', spread_target)
+                    #print('Agent ', self.pos, ' is spreading into', spread_target)
                     self.model.grid.place_agent(patch, spread_target)
                     self.model.schedule.add(patch)
 
-                else:
-                    self.log('No se puede expandir a ' + str(spread_target))
+                #else:
+                    #self.log('No se puede expandir a ' + str(spread_target))
             else:
                 self.spread_chance += 0.005
 
     def get_portrayal(self):
         return {
-            "Shape": "assets/wood2.png" if self.fully_grown else "assets/wood2_s.png",
+            "Shape": "assets/tree.gif" if self.fully_grown else "assets/tree_young.gif",
             "Color": "green",
             "Layer": 1,
             "Filled": "true",
             "r" : "1" if self.fully_grown else "0.31"
         }
-
 
     def class_name(self):
         return "Wood"

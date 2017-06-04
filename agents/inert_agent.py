@@ -1,15 +1,12 @@
-from mesa import Agent
+from agents.custom_agent import CustomAgent
 from controllers.task_manager import TaskManager
 from controllers.rule_manager import RuleManager
 from objectives.simple_objective import SimpleObjective
-import os
 
-class CustomAgent(Agent):
+class InertAgent(CustomAgent):
 
     def __init__(self, position, model):
         super().__init__(position, model)
-        self.pos = position
-        self.model = model
 
     def log(self, text):
         self.model.log.append(text)
@@ -25,7 +22,7 @@ class CustomAgent(Agent):
         }
 
     def class_name(self):
-        return "CustomAgent"
+        return "InertAgent"
 
     def _get_object_id(f):
-        return "CustomAgent"
+        return "InertAgent"

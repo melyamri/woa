@@ -1,8 +1,6 @@
-import random
+from agents.inert_agent import InertAgent
 
-from agents.custom_agent import CustomAgent
-
-class House(CustomAgent):
+class Terrain(InertAgent):
 
     def __init__(self, pos, model):
         '''
@@ -16,9 +14,12 @@ class House(CustomAgent):
 
     def get_portrayal(self):
         return {
-            "Shape": "assets/house.gif",
+            "Shape": "assets/terrain.png",
             "Color": "green",
-            "Layer": 1,
+            "Layer": 0,
             "Filled": "true",
             "r" : "1"
         }
+
+    def class_name(self):
+        return "Terrain"

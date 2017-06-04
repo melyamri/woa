@@ -1,6 +1,6 @@
-from agents.custom_agent import CustomAgent
+from agents.active_agent import ActiveAgent
 
-class Collector(CustomAgent):
+class Collector(ActiveAgent):
     wood = 0
     iron = 0
 
@@ -11,7 +11,7 @@ class Collector(CustomAgent):
 
     def get_portrayal(self):
         return {
-            "Shape": "assets/coll_full.png" if (self.wood > 0) else "assets/coll.png",
+            "Shape": "assets/collector_full.gif" if (self.wood > 0) else "assets/collector.gif",
             "h": 1,
             "w": 1,
             "Color": "red" if (self.wood > 10) else "blue",
@@ -25,9 +25,10 @@ class Collector(CustomAgent):
     def check_wood(self):
         return self.wood
 
-    def give_wood(self):
-        if self.wood > 0:
+    def give_materials(self):
+        if self.wood > 0 and self.iron > 0:
             self.wood -= 1
+            self.iron -= 1
             return True
         else:
             return False

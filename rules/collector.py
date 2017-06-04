@@ -20,12 +20,13 @@ def rule_init(agent):
 def rule_move(agent):
     if agent.objective.class_name() == "CollectObjective" \
             and agent.objective.status == Objective.SOLVING\
-            and agent.check_wood() < 1:
+            and (agent.check_wood() < 1 or agent.check_iron() < 1 ):
         agent.execute_task(TaskManager.MOVE)
 
     if agent.objective.class_name() == "CollectObjective" \
             and agent.objective.status == Objective.SOLVING\
-            and agent.check_wood() > 0:
+            and agent.check_wood() > 0\
+            and agent.check_iron() > 0:
         agent.execute_task(TaskManager.MOVETO)
 
     if agent.objective.class_name() == "SimpleObjective":
@@ -34,8 +35,7 @@ def rule_move(agent):
 def rule_collect(agent):
     if agent.objective.class_name() == "CollectObjective" \
             and agent.objective.status == Objective.SOLVING\
-            and agent.check_wood() < 1\
-            and agent.check_iron() < 1:
+            and (agent.check_wood() < 1 or agent.check_iron() < 1 ):
         agent.execute_task(TaskManager.COLLECT)
 
 def rule_give(agent):

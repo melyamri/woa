@@ -1,16 +1,13 @@
 from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import CanvasGrid, ChartModule, TextElement
-
-from agents.collector import Collector
-from agents.wood import Wood
 from models.world import World
 from models.tracer import Tracer
 
-mapsize = 20
-ncollectors = 5
-nartisans = 3
-nbuilders = 2
-
+mapsize = 10
+ncollectors = 1
+nartisans = 1
+nbuilders = 1
+nmines = 3
 def collector_portrayal(agent):
     if agent is None:
         return
@@ -19,8 +16,6 @@ def collector_portrayal(agent):
 
 
 canvas_element = CanvasGrid(collector_portrayal, mapsize, mapsize, 600, 600)
-#chart_element = ChartModule([{"Label": "Wood", "Color": "#AA0000"},
-#                              {"Label": "Collector", "Color": "#666666"}])
 
 tracer = Tracer("log")
 
@@ -34,8 +29,10 @@ chart = ChartModule([{"Label": "Wood", "Color": "green"},
 server = ModularServer(World, [canvas_element, tracer, chart],
                        "",
                        wood=True,
+                       iron=True,
                        height=mapsize,
                        width=mapsize,
+                       nmines=nmines,
                        initial_collector=ncollectors,
                        initial_artisans=nartisans,
                        initial_builders=nbuilders,
